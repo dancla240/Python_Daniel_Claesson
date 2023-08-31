@@ -1,9 +1,3 @@
 # Python_Daniel_Claesson
-Repository for Python AI23 at ITHS.\
-**Daniel**
----
-````
-print("hej")
-print("hello world")
-``````
-Daniel
+This repository contains all my work for the class in Python Programming, AI23 at ITHS.  
+
