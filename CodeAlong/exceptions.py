@@ -54,35 +54,3 @@ def input:int(prompt = ""):
             return = int(input("input integer: "))
         except ValueError:
             print("my_int is not an integer.")
-#%%
-import random
-l1 = [1, 4, 4, 5, 7, 2, 8, 2]
-l2 = [2, 3, 6, 1, 8, 2, 5, 1]
-l3 = random.sample(range(0, 8), 8) 
-print(f'{l1 =}')
-print(f'{l2 =}')
-print(f"{l3 = }")
-
-l4 = zip(l1, l2, l3)
-
-for item in l4:
-    print(item)
-#sorterar listan l1 baserat på random listan l3
-sorted_l1 = [x[1] for x in sorted(zip(l3, l1))]
-sorted_l2 = [x[1] for x in sorted(zip(l3, l2))]
-print(f'{sorted_l1 = }')
-print(f'{sorted_l2 = }')
-
-#sorterar både lista l1 och l2, baserat på lista l3
-# man kan använda enumerate och zip.
-# https://www.geeksforgeeks.org/zip-in-python/
-
-#sorted_l12 = [(x[1]),(x[2]) for x, y in sorted(zip(l3, l1, l2))]
-
-
-
-
-
-l4 = []
-
-# %%
