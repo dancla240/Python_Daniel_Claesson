@@ -5,11 +5,9 @@ class GeometricFigure {
 +x_pos  
 +y_pos  
 translation()  
-__str__()  
-__repr__()  
 __eq__() '=='
 __lt__() '<'
-__gt__ ()'>'
+__gt__ () '>'
 __le__() '<='
 __ge__() '>='
 }  
@@ -20,6 +18,8 @@ class Circle {
 +circumference  
 is_inside()  
 is_unitcircle()  
+__str__()  
+__repr__()  
 }  
   
 class Rectangle {  
@@ -29,6 +29,8 @@ class Rectangle {
 +circumference  
 is_inside()  
 is_quadratic()  
+__str__()  
+__repr__()  
 }  
     
 GeometricFigure *-- Circle  
