@@ -1,5 +1,8 @@
 import math
 
+"""docstrings"""
+"""man ska göra tester på te xom man skriver in en sträng som """
+
 class GeometricFigure:
 	def __init__(self, x, y):
 		self.x = x
@@ -26,8 +29,7 @@ class GeometricFigure:
 	
 class Circle(GeometricFigure):
 	def __init__(self, x, y, radius):
-		self.x = x
-		self.y = y
+		super().__init__(x, y)
 		self.radius = radius
 	
 	@property
@@ -52,8 +54,7 @@ class Circle(GeometricFigure):
 		
 class Rectangle(GeometricFigure):
 	def __init__(self, x, y, side1, side2):
-		self.x = x
-		self.y = y
+		super().__init__(x, y)
 		self.side1 = side1
 		self.side2 = side2
 		
@@ -72,8 +73,8 @@ class Rectangle(GeometricFigure):
 		return f'to be done'
 
 	def __str__(self):
-		#return f'__str__ :\nx = {self.x}\ny = {self.y}\nside1 = {self.side1}\nside2 = {self.side2}\narea = {self.area}\ncircumference = {self.circumference}\nis quadratic = {self.is_quadratic()}'
-		return f'__str__ :\nx = {self.x}\ny = {self.y}\nside1 = {self.side1}\nside2 = {self.side2}\narea = {self.area}'
+		return f'__str__ :\nx = {self.x}\ny = {self.y}\nside1 = {self.side1}\nside2 = {self.side2}\narea = {self.area}\ncircumference = {self.circumference}\nis quadratic = {self.is_quadratic()}'
+		#return f'__str__ :\nx = {self.x}\ny = {self.y}\nside1 = {self.side1}\nside2 = {self.side2}\narea = {self.area}'
 	def __repr__(self):
-		return f'__repr__ :\nx = {self.x}\ny = {self.y}\nside1 = {self.side1}\nside2 = {self.side2}\narea = {self.area}\ncircumference = {self.circumference}\nis quadratic = {self.is_quadratic}'
+		return f'__repr__ :\nx = {self.x}\ny = {self.y}\nside1 = {self.side1}\nside2 = {self.side2}\narea = {self.area}\ncircumference = {self.circumference}\nis quadratic = {self.is_quadratic()}'
 		
