@@ -1,14 +1,24 @@
 import math
 
-"""docstrings"""
 """man ska göra tester på te xom man skriver in en sträng som """
 
 class GeometricFigure:
+	"""Parent class for creating geometric figures.
+	Contains attributes and methods common between
+	different geometrical figures."""
+	allowed_types = (int, float)
+
 	def __init__(self, x, y):
+		if not all(isinstance(value, Circle.allowed_types) for value in [x, y]):
+			raise TypeError('Allowed coordinate inputs are integers or floats.')
+		
 		self.x = x
 		self.y = y
 		
 	def translation(self,delta_x, delta_y):
+		if not all(isinstance(value, Circle.allowed_types) for value in [delta_x, delta_y]):
+			raise TypeError('Allowed translation inputs are integers or floats.')
+		
 		self.x = self.x + delta_x
 		self.y = self.y + delta_y
 	
@@ -28,8 +38,17 @@ class GeometricFigure:
 		return self.area >= other.area
 	
 class Circle(GeometricFigure):
+	"""Sub class to class Geometric figures, containing properties,
+	attributes and methods unique for the circle."""
+
 	def __init__(self, x, y, radius):
 		super().__init__(x, y)
+		if not all(isinstance(value, Circle.allowed_types) for value in [radius]):
+			raise TypeError('Allowed input on radius is integer or float.')
+		
+		if radius <= 0:
+			raise ValueError('Radius must be a positive value.')		
+
 		self.radius = radius
 	
 	@property
@@ -53,8 +72,16 @@ class Circle(GeometricFigure):
 		return f'_repr_ :\nx = {self.x}\ny = {self.y}\nradius = {self.radius}\narea = {self.area}\ncircumference = {self.circumference}\nis unitcircle = {self.is_unitcircle()}'
 		
 class Rectangle(GeometricFigure):
+	"""Sub class to class Geometric figures, containing properties,
+	attributes and methods unique for the rectangle."""
 	def __init__(self, x, y, side1, side2):
 		super().__init__(x, y)
+		if not all(isinstance(value, Circle.allowed_types) for value in [side1, side2]):
+			raise TypeError('Allowed input on side1 and side2 is integer or float.')
+		
+		if side1 <= 0 or side2 <= 0:
+			raise ValueError('Side1 and side2 must be a positive value.')	
+		
 		self.side1 = side1
 		self.side2 = side2
 		
@@ -74,7 +101,7 @@ class Rectangle(GeometricFigure):
 
 	def __str__(self):
 		return f'__str__ :\nx = {self.x}\ny = {self.y}\nside1 = {self.side1}\nside2 = {self.side2}\narea = {self.area}\ncircumference = {self.circumference}\nis quadratic = {self.is_quadratic()}'
-		#return f'__str__ :\nx = {self.x}\ny = {self.y}\nside1 = {self.side1}\nside2 = {self.side2}\narea = {self.area}'
+		
 	def __repr__(self):
 		return f'__repr__ :\nx = {self.x}\ny = {self.y}\nside1 = {self.side1}\nside2 = {self.side2}\narea = {self.area}\ncircumference = {self.circumference}\nis quadratic = {self.is_quadratic()}'
 		
