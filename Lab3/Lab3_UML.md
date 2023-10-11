@@ -2,8 +2,8 @@
 'Author: Daniel Claesson
 @startuml
 class GeometricFigure {  
-+x_pos  
-+y_pos  
+-x_pos  
+-y_pos  
 translation()  
 __eq__() '=='
 __lt__() '<'
