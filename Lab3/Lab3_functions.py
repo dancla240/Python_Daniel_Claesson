@@ -50,7 +50,7 @@ class GeometricFigure:
 		
 	def __ge__(self, other):
 		return self.area >= other.area
-	
+
 class Circle(GeometricFigure):
 	"""Sub class to class Geometric figures, containing properties,
 	attributes and methods unique for the circle."""
@@ -119,3 +119,4 @@ class Rectangle(GeometricFigure):
 	def __repr__(self):
 		return f'__repr__ :\nx = {self._x}\ny = {self._y}\nside1 = {self.side1}\nside2 = {self.side2}\narea = {self.area}\ncircumference = {self.circumference}\nis quadratic = {self.is_quadratic()}'
 		
+
