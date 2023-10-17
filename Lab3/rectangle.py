@@ -1,6 +1,6 @@
-from geometricfigure2D import GeometricFigure2D
+from geometricfigure import GeometricFigure
 
-class Rectangle(GeometricFigure2D):
+class Rectangle(GeometricFigure):
 	"""Sub class to class Geometric figures, containing properties,
 	attributes and methods unique for the rectangle."""
 	def __init__(self, x, y, side1, side2):
