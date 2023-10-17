@@ -1,8 +1,11 @@
 from circle import Circle
 from rectangle import Rectangle
+from cube import Cube
+from sphere import Sphere
 import math
 import pytest
 
+#test of 2d shapes
 def test_circle_with_invalid_radius_input():
     with pytest.raises(TypeError):
         circle = Circle(1,1,'one')
@@ -201,3 +204,191 @@ def test_rectangele_is_inside():
     assert rectangle.is_inside(0,0) == True
     assert rectangle.is_inside(0.4999,0.4999) == True
     assert rectangle.is_inside(0.5,0.5) == False
+
+# test of 3d shapes
+def test_sphere_with_invalid_radius_input():
+    with pytest.raises(TypeError):
+        sphere = Sphere(0,0,0,'one')
+    with pytest.raises(ValueError):
+        sphere = Sphere(0,0,0,-1)
+
+def test_sphere_with_invalid_coordinate_input():
+    with pytest.raises(TypeError):
+        sphere = Sphere('zero',0,0,1)
+    with pytest.raises(TypeError):
+        sphere = Sphere(0,'zero',0, 1)
+
+def test_cube_with_invalid_side_input(): #28
+    with pytest.raises(ValueError):
+        cube = Cube(0,0,0,-1,1,1)
+    with pytest.raises(ValueError):
+        cube = Cube(0,0,0,1,-1,1)
+    with pytest.raises(ValueError):
+        cube = Cube(0,0,0,1,1,-1)
+    with pytest.raises(TypeError):
+        cube = Cube(0,0,0,'one',1,1)
+    with pytest.raises(TypeError):
+        cube = Cube(0,0,0,1,'one',1)
+    with pytest.raises(TypeError):
+        cube = Cube(0,0,0,1,1,'one')
+
+def test_sphere_translation_with_invalid_coordinates():
+    sphere = Sphere(0,0,0,1)
+    with pytest.raises(TypeError):
+        sphere.translation('one',1,1)
+    with pytest.raises(TypeError):
+        sphere.translation(1,'one',1)
+    with pytest.raises(TypeError):
+        sphere.translation(1,1,'one')
+
+def test_cube_translation_with_invalid_coordinates():
+    cube = Cube(0,0,0,1,1,1)
+    with pytest.raises(TypeError):
+        cube.translation('one',1,1)
+    with pytest.raises(TypeError):
+        cube.translation(1,'one',1)
+    with pytest.raises(TypeError):
+        cube.translation(1,1,'one')
+
+def test_sphere_translation():
+    sphere = Sphere(0,0,0,1)
+    sphere.translation(-1,-1,-1)
+    assert sphere.x == -1
+    assert sphere.y == -1
+    assert sphere.z == -1
+    sphere.translation(5,5,5)
+    assert sphere.x == 4
+    assert sphere.y == 4
+    assert sphere.z == 4
+    
+def test_cube_translation():
+    cube = Cube(0,0,0,1,1,1)
+    cube.translation(-1,-1,-1)
+    assert cube.x == -1
+    assert cube.y == -1
+    assert cube.z == -1
+    cube.translation(5,5,5)
+    assert cube.x == 4
+    assert cube.y == 4
+    assert cube.z == 4
+
+def test_sphere_equal():
+    sphere1 = Sphere(0,0,0,1)
+    sphere2 = Sphere(1,1,2,1)
+    sphere3 = Sphere(2,2,2,2)
+    assert sphere1 == sphere2
+    assert not sphere1 == sphere3
+    assert not sphere2 == sphere3
+
+def test_cubes_equal(): #34
+    cube1 = Cube(0,0,0,1,1,1)
+    cube2 = Cube(1,1,1,1,1,1)
+    cube3 = Cube(1,1,1,2,2,2)
+    assert cube1 == cube2
+    assert not cube1 == cube3
+    assert not cube2 == cube3
+
+def test_spheres_larger_than():
+    sphere1 = Sphere(0,0,0,1)
+    sphere2 = Sphere(1,1,2,1)
+    sphere3 = Sphere(2,2,2,2)
+    assert not sphere1 > sphere2
+    assert not sphere1 > sphere3
+    assert sphere3 > sphere1
+    assert sphere3 > sphere2
+
+def test_cubes_larger_than():
+    cube1 = Cube(0,0,0,1,1,1)
+    cube2 = Cube(1,1,1,1,1,1)
+    cube3 = Cube(1,1,1,2,2,2)
+    assert not cube1 > cube2
+    assert not cube1 > cube3
+    assert cube3 > cube1
+    assert cube3 > cube2
+
+def test_spheres_smaller_than(): #37
+    sphere1 = Sphere(0,0,0,1)
+    sphere2 = Sphere(1,1,2,1)
+    sphere3 = Sphere(2,2,2,2)
+    assert not sphere1 < sphere2
+    assert sphere1 < sphere3
+    assert sphere2 < sphere3
+    assert not sphere3 < sphere1
+    assert not sphere3 < sphere2
+
+def test_cubes_smaller_than():
+    cube1 = Cube(0,0,0,1,1,1)
+    cube2 = Cube(1,1,1,1,1,1)
+    cube3 = Cube(1,1,1,2,2,2)
+    assert not cube1 < cube2
+    assert cube1 < cube3
+    assert cube2 < cube3
+    assert not cube3 < cube1
+    assert not cube3 < cube2
+
+def test_spheres_smaller_than_or_equal():
+    sphere1 = Sphere(0,0,0,1)
+    sphere2 = Sphere(1,1,2,1)
+    sphere3 = Sphere(2,2,2,2)
+    assert sphere1 <= sphere2
+    assert sphere1 <= sphere3
+    assert sphere2 <= sphere3
+    assert not sphere3 <= sphere1
+    assert not sphere3 <= sphere2
+
+def test_cubes_smaller_than_or_equal(): #40
+    cube1 = Cube(0,0,0,1,1,1)
+    cube2 = Cube(1,1,1,1,1,1)
+    cube3 = Cube(1,1,1,2,2,2)
+    assert cube1 <= cube2
+    assert cube1 <= cube3
+    assert cube2 <= cube3
+    assert not cube3 <= cube1
+    assert not cube3 <= cube2
+
+def test_spheres_larger_than_or_equal():
+    sphere1 = Sphere(0,0,0,1)
+    sphere2 = Sphere(1,1,2,1)
+    sphere3 = Sphere(2,2,2,2)
+    assert sphere1 >= sphere2
+    assert not sphere1 >= sphere3
+    assert not sphere2 >= sphere3
+    assert sphere3 >= sphere1
+    assert sphere3 >= sphere2   
+
+def test_cubes_larger_than_or_equal(): #42
+    cube1 = Cube(0,0,0,1,1,1)
+    cube2 = Cube(1,1,1,1,1,1)
+    cube3 = Cube(1,1,1,2,2,2)
+    assert cube1 >= cube2
+    assert not cube1 >= cube3
+    assert not cube2 >= cube3
+    assert cube3 >= cube1
+    assert cube3 >= cube2
+
+def test_sphere_is_inside():
+    sphere = Sphere(0,0,0,1)
+    assert sphere.is_inside(0,0,0)
+    assert not sphere.is_inside(-1,0,0)
+    assert sphere.is_inside(-0.999,0,0)
+
+def test_cube_is_inside():
+    cube = Cube(0,0,0,1,1,1)
+    assert cube.is_inside(0,0,0)
+    assert cube.is_inside(-0.499,0,0)
+    assert cube.is_inside(-0.499,-0.499,-0.499)
+    assert cube.is_inside(-0.5,0,0)
+    assert not cube.is_inside(-0.51,0,0)
+
+
+
+
+
+
+
+
+
+
+
+    
+
