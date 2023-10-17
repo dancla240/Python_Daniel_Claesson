@@ -1,7 +1,7 @@
 import math
-from geometricfigure2D import GeometricFigure2D
+from geometricfigure import GeometricFigure
 
-class Circle(GeometricFigure2D):
+class Circle(GeometricFigure):
 	"""Sub class to class Geometric figures, containing properties,
 	attributes and methods unique for the circle."""
 
