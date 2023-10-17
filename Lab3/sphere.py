@@ -1,7 +1,7 @@
-from geometricfigure2D import GeometricFigure2D
+from geometricfigure import GeometricFigure
 import math
 
-class Sphere(GeometricFigure2D):
+class Sphere(GeometricFigure):
     """doc string"""
     def __init__(self, x, y, z, radius):
         super().__init__(x, y)
