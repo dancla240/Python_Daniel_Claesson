@@ -2,7 +2,8 @@ from geometricfigure import GeometricFigure
 
 class Rectangle(GeometricFigure):
 	"""Sub class to class Geometric figures, containing properties,
-	attributes and methods unique for the rectangle."""
+	attributes and methods unique for the rectangle.
+	"""
 	def __init__(self, x, y, side1, side2):
 		super().__init__(x, y)
 		if not all(isinstance(value, self.allowed_types) for value in [side1, side2]):
@@ -29,8 +30,8 @@ class Rectangle(GeometricFigure):
 		return other_x < (self._x + self.side1/2) and other_x > (self._x - self.side1/2) and other_y < (self._y + self.side2/2) and other_y > (self._y - self.side2/2)
 
 	def __str__(self):
-		return f'__str__ :\nx = {self._x}\ny = {self._y}\nside1 = {self.side1}\nside2 = {self.side2}\narea = {self.area}\ncircumference = {self.circumference}\nis quadratic = {self.is_quadratic()}'
+		return f'__str__ : x = {self._x}, y = {self._y}, side1 = {self.side1}, side2 = {self.side2}, area = {self.area}, circumference = {self.circumference}, is quadratic = {self.is_quadratic()}'
 		
 	def __repr__(self):
-		return f'__repr__ :\nx = {self._x}\ny = {self._y}\nside1 = {self.side1}\nside2 = {self.side2}\narea = {self.area}\ncircumference = {self.circumference}\nis quadratic = {self.is_quadratic()}'
+			return f'{self.__class__.__name__}(address={id(self)})'
 		
