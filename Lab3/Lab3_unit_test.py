@@ -380,6 +380,18 @@ def test_cube_is_inside():
     assert cube.is_inside(-0.5,0,0)
     assert not cube.is_inside(-0.51,0,0)
 
+def test_cube_is_cubic():
+    cube1 = Cube(0,0,0,1,1,1)
+    assert cube1.is_cubic() == True
+    cube2 = Cube(0,0,0,1,1,2)
+    assert not cube2.is_cubic() == True
+
+def test_cube_circumference():
+    cube1 = Cube(0,0,0,1,1,3)
+    assert cube1.circumference == 4
+    cube2 = Cube(0,0,0,2,2,10)
+    assert cube2.circumference == 8
+
 
 
 
