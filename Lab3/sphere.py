@@ -2,7 +2,9 @@ from geometricfigure import GeometricFigure
 import math
 
 class Sphere(GeometricFigure):
-    """doc string"""
+    """Sub class to class Geometric figures, containing properties,
+	attributes and methods unique for the sphere.
+    """
     def __init__(self, x, y, z, radius):
         super().__init__(x, y)
         if not all(isinstance(value, self.allowed_types) for value in [z, radius]):
@@ -37,7 +39,7 @@ class Sphere(GeometricFigure):
         return 2 * self.radius * math.pi
     
     def __str__(self):
-        return f'_str_ :\nx = {self._x}\ny = {self._y}\nz = self._z\nradius = {self.radius}\ncircumference = {self.circumference}'
+        return f'_str_ : x = {self._x}, y = {self._y}, z = self._z, radius = {self.radius}, circumference = {self.circumference}'
 	
     def __repr__(self):
-        return f'_str_ :\nx = {self._x}\ny = {self._y}\nz = self._z\nradius = {self.radius}\ncircumference = {self.circumference}'
+        	return f'{self.__class__.__name__}(address={id(self)})'
