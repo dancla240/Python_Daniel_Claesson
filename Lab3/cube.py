@@ -2,7 +2,8 @@ from geometricfigure import GeometricFigure
 
 class Cube(GeometricFigure):
     """Sub class to class Geometric figures, containing properties,attributes and 
-	methods unique for the circle. The sides can also be of different length."""
+	methods unique for the cube. The sides can also be of different length.
+    """
     def __init__(self, x, y, z, side1, side2, side3):
         super().__init__(x, y)
         if not all(isinstance(value, self.allowed_types) for value in [z, side1, side2, side3]):
@@ -34,7 +35,7 @@ class Cube(GeometricFigure):
     
     @property
     def circumference(self):
-        return min[(self.side1*2+self.side2*2),(self.side1*2+self.side3*2),(self.side2*2+self.side3*2)] #circumference defined as the smallest possible circumference
+        return min((self.side1*2+self.side2*2),(self.side1*2+self.side3*2),(self.side2*2+self.side3*2)) #circumference defined as the smallest possible circumference
 
     def is_inside(self, other_x, other_y, other_z):
         return ((self.x - self.side1/2 <= other_x <= self.x + self.side1/2) and
@@ -45,11 +46,10 @@ class Cube(GeometricFigure):
         return self.side1 == self.side2 == self.side3
 
     def __str__(self):
-        return f'x = {self.x}\ny = {self.y}\nz = {self.z}\narea = {self.area}\nvolume = {self.volume}'
+        return f'x = {self.x}, y = {self.y}, z = {self.z}, area = {self.area}, volume = {self.volume}'
         
     def __repr__(self):
-        return f'x = {self.x}\ny = {self.y}\nz = {self.z}\narea = {self.area}\nvolume = {self.volume}'
-
+       	return f'{self.__class__.__name__}(address={id(self)})'
 
         
             
