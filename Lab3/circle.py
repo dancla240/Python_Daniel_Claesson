@@ -3,8 +3,8 @@ from geometricfigure import GeometricFigure
 
 class Circle(GeometricFigure):
 	"""Sub class to class Geometric figures, containing properties,
-	attributes and methods unique for the circle."""
-
+	attributes and methods unique for the circle.
+	"""
 	def __init__(self, x, y, radius):
 		super().__init__(x, y)
 		if not all(isinstance(value, self.allowed_types) for value in [radius]):
@@ -30,8 +30,8 @@ class Circle(GeometricFigure):
 		return self.radius == 1 and self._x == 0 and self._y == 0
 	
 	def __str__(self):
-		return f'_str_ :\nx = {self._x}\ny = {self._y}\nradius = {self.radius}\narea = {self.area}\ncircumference = {self.circumference}\nis unitcircle = {self.is_unitcircle()}'
+		return f'_str_ : x = {self._x}, y = {self._y}, radius = {self.radius}, area = {self.area}, circumference = {self.circumference}, is unitcircle = {self.is_unitcircle()}'
 	
 	def __repr__(self):
-		return f'_repr_ :\nx = {self._x}\ny = {self._y}\nradius = {self.radius}\narea = {self.area}\ncircumference = {self.circumference}\nis unitcircle = {self.is_unitcircle()}'
+		return f'{self.__class__.__name__}(address={id(self)})'
 		
