@@ -1,7 +1,8 @@
 class GeometricFigure:
 	"""Parent class for creating geometric figures.
 	Contains attributes and methods common between
-	different geometrical figures."""
+	different geometrical figures.
+	"""
 	allowed_types = (int, float)
 
 	def __init__(self, x, y, z=0):
@@ -69,3 +70,9 @@ class GeometricFigure:
 		
 	def __ge__(self, other):
 		return self.area >= other.area
+	
+	def __str__(self):
+		return 0
+	
+	def __repr__(self):
+		return 0
