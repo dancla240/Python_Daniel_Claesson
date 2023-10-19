@@ -72,7 +72,7 @@ class GeometricFigure:
 		return self.area >= other.area
 	
 	def __str__(self):
-		return 0
+		return 0 #each subclass will contain its unique __str__
 	
 	def __repr__(self):
-		return 0
+		return 0 #each subclass will contain its unique __repr__
