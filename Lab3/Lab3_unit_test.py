@@ -392,6 +392,22 @@ def test_cube_circumference():
     cube2 = Cube(0,0,0,2,2,10)
     assert cube2.circumference == 8
 
+def test_sphere_circumference():
+    sphere = Sphere(0,0,0,1)
+    assert sphere.circumference() == 2 * math.pi * sphere.radius
+    assert not sphere.circumference() == 10
+
+def test_sphere_area():
+    sphere = Sphere(0,0,0,1)
+    assert sphere.area == 4 * math.pi * sphere.radius**3
+
+def cube_area():
+    cube = Cube(0,0,0,1,1,1)
+    assert cube.area == 6
+    assert not cube.area == 8
+
+
+
 
 
 
