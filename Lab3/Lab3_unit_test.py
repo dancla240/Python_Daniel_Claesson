@@ -6,19 +6,23 @@ import math
 import pytest
 
 #test of 2d shapes
-def test_circle_with_invalid_radius_input():
+def test_instantiate_circle_with_invalid_radius_input():
+    with pytest.raises(ValueError):
+        circle = Circle(1,1,0)
     with pytest.raises(TypeError):
         circle = Circle(1,1,'one')
     with pytest.raises(ValueError):
         circle = Circle(1,1,-1)
 
-def test_circle_with_invalid_coordinate_input():
+def test_instantiate_circle_with_invalid_coordinate_input():
     with pytest.raises(TypeError):
         circle = Circle('one',1,1)
     with pytest.raises(TypeError):
         circle = Circle(1,'one',1)
 
-def test_rectangle_with_invalid_side_input():
+def test_instantiate_rectangle_with_invalid_side_input():
+    with pytest.raises(ValueError):
+        rectangle = Rectangle(1,1,0,0)
     with pytest.raises(ValueError):
         rectangle = Rectangle(1,1,-1,1)
     with pytest.raises(ValueError):
@@ -205,20 +209,44 @@ def test_rectangele_is_inside():
     assert rectangle.is_inside(0.4999,0.4999) == True
     assert rectangle.is_inside(0.5,0.5) == False
 
+def test_rectangle_str():
+    rectangle = Rectangle(0,1,1,1)
+    assert str(rectangle) == 'x = 0, y = 1, width = 1, height = 1, area = 1, circumference = 4, is quadratic = True'
+
+def test_circle_str():
+    circle = Circle(0,0,1)
+    assert str(circle) == 'x = 0, y = 0, radius = 1, area = 3.141592653589793, circumference = 6.283185307179586, is unitcircle = True'
+
 # test of 3d shapes
-def test_sphere_with_invalid_radius_input():
+def test_instantiate_sphere_with_invalid_radius_input():
     with pytest.raises(TypeError):
         sphere = Sphere(0,0,0,'one')
     with pytest.raises(ValueError):
         sphere = Sphere(0,0,0,-1)
+    with pytest.raises(ValueError):
+        sphere = Sphere(0,0,0,0)
 
-def test_sphere_with_invalid_coordinate_input():
+def test_instantiate_sphere_with_invalid_coordinate_input():
     with pytest.raises(TypeError):
         sphere = Sphere('zero',0,0,1)
     with pytest.raises(TypeError):
         sphere = Sphere(0,'zero',0, 1)
 
-def test_cube_with_invalid_side_input(): #28
+def test_instantiate_cube_with_invalid_coordinate_input():
+    with pytest.raises(TypeError):
+        cube = Cube('zero',0,0,1,1,1)
+    with pytest.raises(TypeError):
+        cube = Cube([0],0,0,1,1,1)
+
+def test_instantiate_cube_with_invalid_side_input(): #28
+    with pytest.raises(ValueError):
+        cube = Cube(0,0,0,0,1,1)
+    with pytest.raises(ValueError):
+        cube = Cube(0,0,0,1,0,1)
+    with pytest.raises(ValueError):
+        cube = Cube(0,0,0,1,1,0)
+    with pytest.raises(ValueError):
+        cube = Cube(0,0,0,0,0,0)   
     with pytest.raises(ValueError):
         cube = Cube(0,0,0,-1,1,1)
     with pytest.raises(ValueError):
@@ -239,7 +267,7 @@ def test_sphere_translation_with_invalid_coordinates():
     with pytest.raises(TypeError):
         sphere.translation(1,'one',1)
     with pytest.raises(TypeError):
-        sphere.translation(1,1,'one')
+        sphere.translation(1,1,[1])
 
 def test_cube_translation_with_invalid_coordinates():
     cube = Cube(0,0,0,1,1,1)
@@ -277,6 +305,7 @@ def test_sphere_equal():
     sphere2 = Sphere(1,1,2,1)
     sphere3 = Sphere(2,2,2,2)
     assert sphere1 == sphere2
+    assert sphere2 == sphere1
     assert not sphere1 == sphere3
     assert not sphere2 == sphere3
 
@@ -325,6 +354,7 @@ def test_cubes_smaller_than():
     assert cube2 < cube3
     assert not cube3 < cube1
     assert not cube3 < cube2
+    assert cube2 < cube3
 
 def test_spheres_smaller_than_or_equal():
     sphere1 = Sphere(0,0,0,1)
@@ -386,37 +416,24 @@ def test_cube_is_cubic():
     cube2 = Cube(0,0,0,1,1,2)
     assert not cube2.is_cubic() == True
 
-def test_cube_circumference():
-    cube1 = Cube(0,0,0,1,1,3)
-    assert cube1.circumference == 4
-    cube2 = Cube(0,0,0,2,2,10)
-    assert cube2.circumference == 8
-
 def test_sphere_circumference():
     sphere = Sphere(0,0,0,1)
     assert sphere.circumference() == 2 * math.pi * sphere.radius
     assert not sphere.circumference() == 10
 
-def test_sphere_area():
+def test_sphere_surface_area():
     sphere = Sphere(0,0,0,1)
-    assert sphere.area == 4 * math.pi * sphere.radius**3
+    assert sphere.surface_area == 4 * math.pi * sphere.radius**3
 
-def cube_area():
+def test_cube_surface_area():
     cube = Cube(0,0,0,1,1,1)
-    assert cube.area == 6
-    assert not cube.area == 8
+    assert cube.surface_area == 6
+    assert not cube.surface_area == 8
 
+def test_cube_str():
+    cube = Cube(1,1,1,1,1,1)
+    assert str(cube) == 'x = 1, y = 1, z = 1, surface area = 6, volume = 1'
 
-
-
-
-
-
-
-
-
-
-
-
-    
-
+def test_sphere_str():
+    sphere = Sphere(1,1,2,1)
+    assert str(sphere) == 'x = 1, y = 1, z = 2, radius = 1, circumference = 6.283185307179586, surface area = 12.566370614359172'
