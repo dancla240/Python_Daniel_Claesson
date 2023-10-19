@@ -2,21 +2,36 @@
 'Author: Daniel Claesson
 @startuml
 class GeometricFigure {  
--x_pos  
--y_pos  
--z_pos
+- x   
+- y  
++translation(delta_x,delta_y)  
+__str__()  
+__repr__() 
+}  
+
+class Shape2D {
 -area  
 -circumference  
-+translation(delta_x,delta_y,delta_z)  
 +is_inside()  
 __eq__() '=='  
 __lt__() '<'  
 __gt__ () '>'  
 __le__() '<='  
 __ge__() '>='  
-__str__()  
-__repr__()  
-}  
+}
+
+class Shape3D {
+- z  
+-volume
+-surface_area
++translation(delta_z)  
++is_inside()
+__eq__() '=='  
+__lt__() '<'  
+__gt__ () '>'  
+__le__() '<='  
+__ge__() '>='  
+}
   
 class Circle {  
 +radius  
@@ -24,28 +39,29 @@ is_unitcircle()
 }  
   
 class Rectangle {  
-+side1  
-+side2  
++width  
++height  
 is_quadratic()  
 }  
 
 class Cube {  
-+side1  
-+side2  
-+side3  
-is_cubic()
-volume()    
++width  
++height  
++depth  
+is_cubic()  
+ 
 }
 
 class Sphere {  
 +radius  
-volume()  
++circumference  
 }
 
     
-GeometricFigure <|-- Circle  
-GeometricFigure <|-- Rectangle  
-GeometricFigure <|-- Cube
-GeometricFigure <|-- Sphere
-  
+GeometricFigure <|-- Shape2D
+GeometricFigure <|-- Shape3D
+Shape2D <|-- Circle  
+Shape2D <|-- Rectangle  
+Shape3D <|-- Cube
+Shape3D <|-- Sphere
 @enduml
