@@ -1,12 +1,12 @@
-from geometricfigure import GeometricFigure
+from shape3D import Shape3D
 import math
 
-class Sphere(GeometricFigure):
+class Sphere(Shape3D):
     """Sub class to class Geometric figures, containing properties,
 	attributes and methods unique for the sphere.
     """
     def __init__(self, x, y, z, radius):
-        super().__init__(x, y)
+        super().__init__(x, y, z)
         if not all(isinstance(value, self.allowed_types) for value in [z, radius]):
             raise TypeError('Allowed input on radius is integer or float.')
         
@@ -25,7 +25,7 @@ class Sphere(GeometricFigure):
         self._z = z
     
     @property
-    def area(self):
+    def surface_area(self):
         return math.pi * 4 * self.radius**2
     
     @property
@@ -39,7 +39,7 @@ class Sphere(GeometricFigure):
         return 2 * self.radius * math.pi
     
     def __str__(self):
-        return f'_str_ : x = {self._x}, y = {self._y}, z = self._z, radius = {self.radius}, circumference = {self.circumference}'
+        return f'x = {self._x}, y = {self._y}, z = {self._z}, radius = {self.radius}, circumference = {self.circumference()}, surface area = {self.surface_area}'
 	
     def __repr__(self):
         	return f'{self.__class__.__name__}(address={id(self)})'

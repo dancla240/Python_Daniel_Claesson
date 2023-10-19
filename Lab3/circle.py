@@ -1,7 +1,8 @@
+from shape2D import Shape2D
 import math
-from geometricfigure import GeometricFigure
 
-class Circle(GeometricFigure):
+
+class Circle(Shape2D):
 	"""Sub class to class Geometric figures, containing properties,
 	attributes and methods unique for the circle.
 	"""
@@ -30,7 +31,7 @@ class Circle(GeometricFigure):
 		return self.radius == 1 and self._x == 0 and self._y == 0
 	
 	def __str__(self):
-		return f'_str_ : x = {self._x}, y = {self._y}, radius = {self.radius}, area = {self.area}, circumference = {self.circumference}, is unitcircle = {self.is_unitcircle()}'
+		return f'x = {self._x}, y = {self._y}, radius = {self.radius}, area = {self.area}, circumference = {self.circumference}, is unitcircle = {self.is_unitcircle()}'
 	
 	def __repr__(self):
 		return f'{self.__class__.__name__}(address={id(self)})'
