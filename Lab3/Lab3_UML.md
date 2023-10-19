@@ -33,12 +33,13 @@ class Cube {
 +side1  
 +side2  
 +side3  
-is_cubic()  
+is_cubic()
+volume()    
 }
 
 class Sphere {  
 +radius  
-
+volume()  
 }
 
     
